@@ -1,38 +1,37 @@
+import streamlit as st
 import pandas as pd
 import plotly.express as px
-import streamlit as st
-from charts import load_data, settings, histogram, scatter
+from charts import load_data, histogram, scatter
 
 st.set_page_config(page_title='Explorador de vehículos', layout='wide')
-st.header('Explorador de vehículos')
-st.write('Sprint 7 · Panel interactivo de análisis exploratorio de datos.')
-try:
-    data, mode, filename = load_data()
-except (OSError, ValueError) as error:
-    st.error(f'No se pudieron cargar los datos: {error}')
-    st.stop()
-st.caption(f'Fuente: {filename}')
-if mode == 'mpg':
-    st.info('Se utiliza el dataset alternativo mpg, basado en datos de economía de combustible de la EPA.')
-config = settings(mode)
-category = config['category']
-options = sorted(data[category].dropna().unique().tolist())
-selected = st.sidebar.multiselect('Tipos de vehículo', options, default=options)
-filtered = data[data[category].isin(selected)]
+st.header('Análisis de anuncios de venta de vehículos')
+st.write('Explora el kilometraje y los precios de los vehículos usados en Estados Unidos.')
+
+@st.cache_data
+def read_data():
+    return load_data()
+
+car_data = read_data()
+options = sorted(car_data['type'].dropna().unique())
+selected = st.sidebar.multiselect('Tipo de vehículo', options, default=options)
+filtered = car_data[car_data['type'].isin(selected)]
+
 if filtered.empty:
-    st.warning('Selecciona al menos un tipo de vehículo con datos.')
+    st.warning('Selecciona al menos un tipo de vehículo.')
     st.stop()
-x, y = config['x'], config['y']
+
 col1, col2, col3 = st.columns(3)
-col1.metric('Registros', f'{len(filtered):,}')
-col2.metric(f'Mediana: {config["labels"][x]}', f'{filtered[x].median():,.1f}')
-col3.metric(f'Mediana: {config["labels"][y]}', f'{filtered[y].median():,.1f}')
-st.subheader('Visualizaciones interactivas')
+col1.metric('Anuncios', f'{len(filtered):,}')
+col2.metric('Precio mediano (USD)', f'${filtered["price"].median():,.0f}')
+col3.metric('Kilometraje mediano (millas)', f'{filtered["odometer"].median():,.0f}')
+
 if st.checkbox('Construir histograma', value=True):
-    st.write(config['hist_title'])
-    st.plotly_chart(histogram(filtered, mode), use_container_width=True)
+    st.write('Distribución del kilometraje de los vehículos.')
+    st.plotly_chart(histogram(filtered), use_container_width=True)
+
 if st.checkbox('Construir gráfico de dispersión', value=True):
-    st.write(config['scatter_title'])
-    st.plotly_chart(scatter(filtered, mode), use_container_width=True)
+    st.write('Relación entre el kilometraje y el precio de venta.')
+    st.plotly_chart(scatter(filtered), use_container_width=True)
+
 with st.expander('Vista previa de los datos'):
     st.dataframe(filtered.head(100), use_container_width=True)
