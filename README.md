@@ -34,4 +34,4 @@ El análisis exploratorio se encuentra en `notebooks/EDA.ipynb`.
 
 ## Aplicación web
 
-Despliegue en Render pendiente.
+La aplicación está disponible en [Render](https://vehicles-dashboard-sprint7.onrender.com/).
