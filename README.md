@@ -1,25 +1,37 @@
-# Explorador de vehículos | Sprint 7
+# Análisis de anuncios de venta de vehículos
 
-Proyecto de TripleTen: aplicación web interactiva de análisis exploratorio con pandas, Plotly y Streamlit. Incluye histograma, dispersión, casillas de verificación, filtros y estadísticas.
+Este proyecto tiene como objetivo desarrollar una aplicación web interactiva para explorar un conjunto de datos de vehículos. La aplicación permite visualizar la distribución de distintas características de los automóviles y analizar la relación entre ellas mediante gráficos interactivos.
 
-**Aplicación en Render:** pendiente de desplegar.
+## Funcionalidades
+
+- Histograma para visualizar la distribución de los datos.
+- Gráfico de dispersión para comparar variables.
+- Filtros por tipo de vehículo.
+- Casillas de verificación para mostrar u ocultar los gráficos.
+- Consulta de estadísticas descriptivas y vista previa de los datos.
+
+## Herramientas utilizadas
+
+- Python
+- Pandas
+- Plotly
+- Streamlit
+- Git y GitHub
+- Render
 
 ## Datos
-Se utiliza el dataset alternativo mpg (234 registros de economía de combustible de vehículos). Fuente: https://github.com/tidyverse/ggplot2/blob/main/data-raw/mpg.csv y documentación https://ggplot2.tidyverse.org/reference/mpg.html. El archivo original del curso no fue proporcionado. Si se añade vehicles_us.csv a la raíz, la aplicación cambia automáticamente a kilometraje y precio.
+
+La aplicación admite el archivo `vehicles_us.csv`, que contiene anuncios de venta de vehículos en Estados Unidos, así como el archivo `mpg.csv`, que contiene datos de rendimiento de combustible.
 
 ## Ejecución local
+
 ```bash
-python -m venv vehicles_env
 pip install -r requirements.txt
 streamlit run app.py
 ```
-Activa el entorno antes de instalar: en Windows, ` .\vehicles_env\Scripts\Activate.ps1 `; en Linux/macOS, `source vehicles_env/bin/activate`.
 
-El análisis exploratorio está en notebooks/EDA.ipynb. Instala ipykernel en el entorno si necesitas ejecutar Jupyter.
+El análisis exploratorio se encuentra en `notebooks/EDA.ipynb`.
 
-## Render
-Crea un Web Service desde este repositorio, rama main, runtime Python, plan Free.
-- Build: `pip install --upgrade pip && pip install -r requirements.txt`
-- Start: `streamlit run app.py --server.address=0.0.0.0 --server.port=$PORT`
+## Aplicación web
 
-También se incluye render.yaml. Cuando el servicio esté disponible, actualiza este README con su URL real.
+Despliegue en Render pendiente.
