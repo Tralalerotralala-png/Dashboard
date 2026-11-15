@@ -1,27 +1,18 @@
 # Análisis de anuncios de venta de vehículos
 
-Este proyecto tiene como objetivo desarrollar una aplicación web interactiva para explorar un conjunto de datos de vehículos. La aplicación permite visualizar la distribución de distintas características de los automóviles y analizar la relación entre ellas mediante gráficos interactivos.
+Este proyecto consiste en una aplicación web interactiva para explorar anuncios de venta de vehículos usados en Estados Unidos. Su objetivo es visualizar la distribución del kilometraje y analizar su relación con el precio de venta de los automóviles.
 
 ## Funcionalidades
 
-- Histograma para visualizar la distribución de los datos.
-- Gráfico de dispersión para comparar variables.
+- Histograma de kilometraje.
+- Gráfico de dispersión de precio frente al kilometraje.
 - Filtros por tipo de vehículo.
 - Casillas de verificación para mostrar u ocultar los gráficos.
-- Consulta de estadísticas descriptivas y vista previa de los datos.
+- Estadísticas descriptivas y vista previa de los datos.
 
-## Herramientas utilizadas
+## Datos y herramientas
 
-- Python
-- Pandas
-- Plotly
-- Streamlit
-- Git y GitHub
-- Render
-
-## Datos
-
-La aplicación admite el archivo `vehicles_us.csv`, que contiene anuncios de venta de vehículos en Estados Unidos, así como el archivo `mpg.csv`, que contiene datos de rendimiento de combustible.
+El conjunto de datos utilizado es `vehicles_us.csv`. El proyecto se desarrolló con Python, pandas, Plotly y Streamlit.
 
 ## Ejecución local
 
@@ -34,4 +25,4 @@ El análisis exploratorio se encuentra en `notebooks/EDA.ipynb`.
 
 ## Aplicación web
 
-La aplicación está disponible en [Render](https://vehicles-dashboard-sprint7.onrender.com/).
+https://vehicles-dashboard-sprint7.onrender.com/
